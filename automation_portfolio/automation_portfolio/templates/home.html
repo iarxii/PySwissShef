@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Welcome to PySwissChef</h1>
+
+        <div class="row align-items-center bg-light p-4 rounded-3 mb-5">
+            <div class="col-md-3 text-center mb-3 mb-md-0">
+                <img src="{% static 'images/pyswisschef_ai_logo.png' %}" alt="PySwissChef Logo" class="img-fluid rounded-circle shadow-sm" style="max-width: 150px;">
+            </div>
+            <div class="col-md-9">
+                <h2>Hey there! Welcome to my digital workshop!</h2>
+                <p class="lead text-muted">I'm Thabang, and this is PySwissChef – my personal playground for all things Python and automation. Think of it as a Swiss Army knife, but for code. Each tool you see below is a script I've cooked up to solve a problem, automate a task, or just satisfy my curiosity. Feel free to take them for a spin!</p>
+            </div>
+        </div>
+
+        <h3 class="text-center mb-4">Available Scripts</h3>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for script in scripts %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ script.name }}</h5>
+                        <p class="card-text">{{ script.description }}</p>
+                        <form action="{% url 'scripts:run_script' script.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Run</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No scripts have been added yet. Please check back later or add scripts via the admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if output %}
+        <div class="mt-5">
+            <h2>Output:</h2>
+            <pre>{{ output }}</pre>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
