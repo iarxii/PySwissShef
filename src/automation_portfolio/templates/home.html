@@ -1,0 +1,15 @@
+<h1>Automation Showcase</h1>
+{% for script in scripts %}
+    <div>
+        <h3>{{ script.name }}</h3>
+        <p>{{ script.description }}</p>
+        {% url 
+            {% csrf_token %}
+            <button type="submit">Run</button>
+        </form>
+    </div>
+{% endfor %}
+{% if output %}
+    <h2>Output:</h2>
+    <pre>{{ output }}</pre>
+{% endif %}

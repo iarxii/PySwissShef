@@ -1,0 +1,9 @@
+[submodule "mypy/scripts/sql_db_schema_analyser"]
+	path = mypy/scripts/sql_db_schema_analyser
+	url = https://github.com/iarxii/sql_db_schema_analyser
+[submodule "mypy/scripts/excel_sql_migration"]
+	path = mypy/scripts/excel_sql_migration
+	url = https://github.com/iarxii/Python-Excel-SQL-Migration-Script
+[submodule "mypy/scripts/sentiment_analysis"]
+	path = mypy/scripts/sentiment_analysis
+	url = https://github.com/iarxii/Sentiment-Analysis-Python
