@@ -94,13 +94,33 @@ def reset_database():
         print("Reset aborted.")
 
 def run_web():
-    """Start the Django Portal."""
-    print("\n[+] Starting Web Portal...")
-    # Ensure migrations are done
-    os.chdir(DJANGO_DIR)
-    run_command([sys.executable, "manage.py", "migrate"])
+    """Start the Django Portal with auto-bootstrapping."""
+    print("\n[+] Initializing Web Portal...")
     
-    # Launch server
+    # 1. Dependency Check
+    try:
+        import django
+    except ImportError:
+        print("[!] Django is not installed in the current environment.")
+        choice = input("[?] Would you like to attempt to install requirements now? (y/N): ")
+        if choice.lower() == 'y':
+            print("[+] Installing dependencies from requirements.txt...")
+            if not run_command([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"]):
+                print("[!!] Installation failed. Please install dependencies manually.")
+                return
+        else:
+            print("[!!] Cannot start portal without Django. Exiting.")
+            return
+
+    # 2. Migration Check
+    print("[+] Applying database migrations...")
+    os.chdir(DJANGO_DIR)
+    if not run_command([sys.executable, "manage.py", "migrate"]):
+        print("[!!] Migrations failed.")
+        return
+    
+    # 3. Launch Server
+    print("[+] Server is starting at http://127.0.0.1:8000")
     try:
         subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8000"])
     except KeyboardInterrupt:
