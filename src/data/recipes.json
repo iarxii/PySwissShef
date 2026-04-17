@@ -1,0 +1,58 @@
+[
+  {
+    "id": "excel-sql",
+    "slug": "excel-to-sql-migration",
+    "name": "Excel to SQL Migration",
+    "file": "Upload_Data_DB.py",
+    "category": "Data Processing",
+    "description": "Precisely map and transfer Excel data into SQL schemas (MS SQL, MySQL, or PostgreSQL).",
+    "detailed_description": "The Excel to SQL Migration tool is designed for precision-heavy data transitions. It maps Excel columns to SQL schemas automatically, ensuring that no ingredient is lost in translation. Ideal for large-scale data ingestion and legacy system migrations.",
+    "environment": "Codespaces Recommended",
+    "security": "Low-Impact (Utility)",
+    "repo_url": "https://github.com/iarxii/ExcelToSQL",
+    "release_url": "https://github.com/iarxii/ExcelToSQL/releases",
+    "has_sample_data": false
+  },
+  {
+    "id": "sentiment",
+    "slug": "sentiment-analysis",
+    "name": "Sentiment Analysis",
+    "file": "sentiment_analysis.py",
+    "category": "Natural Language",
+    "description": "Gourmet NLP recipe for dissecting emotional seasoning from raw feedback data.",
+    "detailed_description": "A sophisticated NLP recipe for dissecting customer feedback. It leverages pre-trained models (NLTK) to extract sentiment scores and keyword insights. Features built-in language detection and gourmet diagnostic logs.",
+    "environment": "StackBlitz Compatible",
+    "security": "Experimental",
+    "repo_url": "https://github.com/iarxii/SentimentAnalysis",
+    "release_url": "",
+    "has_sample_data": true
+  },
+  {
+    "id": "keyword",
+    "slug": "textual-keyword-extractor",
+    "name": "Textual Keyword Extractor",
+    "file": "textual_data_keyword_extractor.py",
+    "category": "Data Processing",
+    "description": "High-speed filtering tool for isolating mission-critical records from legacy CSV files.",
+    "detailed_description": "Act like a master filter for your data. This script searches massive CSV datasets for specific keywords (e.g., medical terms, error codes) and exports refined 'nuggets' of information for further analysis.",
+    "environment": "StackBlitz Compatible",
+    "security": "Low-Impact (Utility)",
+    "repo_url": "https://github.com/iarxii/PySwissShef",
+    "release_url": "",
+    "has_sample_data": false
+  },
+  {
+    "id": "schema",
+    "slug": "mssql-schema-analyzer",
+    "name": "MSSQL Database Schema Analyzer",
+    "file": "sql_analyser_mssql_db.py",
+    "category": "SQL Tools",
+    "description": "Deep-scan diagnostics for Microsoft SQL Server architectures, producing structural PDF reports.",
+    "detailed_description": "A powerful structural diagnostic tool. It connects to your SQL Server instance, analyzes table relationships, and generates comprehensive documentation, including Entity-Relationship Diagrams (ERD).",
+    "environment": "StackBlitz (Visual Only)",
+    "security": "High-Access (System)",
+    "repo_url": "https://github.com/iarxii/PySwissShef",
+    "release_url": "",
+    "has_sample_data": false
+  }
+]
