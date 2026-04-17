@@ -5,7 +5,7 @@ echo "  PySwissShef Laboratory: StackBlitz Bootstrap  "
 echo "------------------------------------------------"
 
 # 1. Environment Check
-if command -v pip &> /dev/null
+if command -v pip > /dev/null 2>&1
 then
     echo "[+] pip found. Initializing dependencies..."
     pip install -r requirements.txt
