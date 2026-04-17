@@ -1,0 +1,18 @@
+{
+  "name": "pyswissshef-lab",
+  "version": "1.0.0",
+  "description": "PySwissShef Laboratory Portal",
+  "main": "main.py",
+  "scripts": {
+    "start": "python main.py --web",
+    "setup": "bash setup_stackblitz.sh"
+  },
+  "keywords": [
+    "python",
+    "automation",
+    "lab",
+    "django"
+  ],
+  "author": "iarxii",
+  "license": "MIT"
+}

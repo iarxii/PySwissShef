@@ -10,44 +10,43 @@
 
 ---
 
-## ✨ Features
-
-- ⚙️ Admin portal to upload and manage automation scripts
-- 👥 Guest access to run scripts without account creation
-- 📄 Script execution with real-time output display
-- 🎨 Stylish and responsive UI
-- 🧩 Modular architecture for easy extension
+## 🥘 Features
+*   **Gourmet UI**: Premium glassmorphism driven by `lab_theme.css`.
+*   **Recipe Catalogue**: Categorized automation scripts with detailed gourmet stories.
+*   **Safety First**: One-time security disclaimer and environment-aware execution.
+*   **In-Process Engine**: Refactored to run seamlessly in WASM/Browser environments.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Launch the Laboratory
 
-### Prerequisites
+Choose your "Cooking Station" based on the recipe's heat requirements:
 
-- Python 3.8+
-- Django 4.x
-- pip
+| Environment | Station Type | Launch Link |
+| :--- | :--- | :--- |
+| **StackBlitz** | 🍧 Tasting Room (UI Preview) | [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/~/github.com/iarxii/PySwissShef) |
+| **Replit** | 🥘 High-Heat Kitchen (Full Run) | [Launch on Replit](https://replit.com/github/iarxii/PySwissShef) |
+| **Codespaces** | 🧪 Pro Lab (Dev Environment) | [Launch on GitHub Codespaces](https://github.com/codespaces/new?repo=iarxii/PySwissShef) |
 
-### Installation
+> [!TIP]
+> Not sure which one to use? Check the **[Chef's Guide to Lab Stations](docs/LAB_STATIONS.md)** for a full comparison.
 
-```bash
-git clone https://github.com/iarxii/pyswisschef.git
-cd pyswisschef
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\\Scripts\\activate`
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
+## 🏡 Local Kitchen Setup
 
----
-
-## 🧪 Usage
-
-- Visit `http://localhost:8000` to access the guest interface.
-- Log in to `/admin` to manage scripts.
-- Upload Python scripts via the admin panel.
-- Guests can run scripts and view output without logging in.
+1.  **Clone & Enter**:
+    ```bash
+    git clone https://github.com/iarxii/PySwissShef.git
+    cd PySwissShef
+    ```
+2.  **Fire up the Stove**:
+    - **Windows**: Run `./start_dev.bat`
+    - **Linux/Mac**:
+      ```bash
+      python3 -m venv venv && source venv/bin/activate
+      pip install -r requirements.txt
+      python main.py --web
+      ```
+3.  **Taste the Results**: Access the portal at `http://127.0.0.1:8000`.
 
 ---
 
