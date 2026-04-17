@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Terminal, Shield, ChefHat, Play, Github, Download } from 'lucide-react';
+import { Terminal, Shield, ChefHat, Play, Github, Download, Eye } from 'lucide-react';
 import recipes from '../data/recipes.json';
+import CodeVault from '../components/CodeVault';
+
+// Gourmet Script Imports (Raw)
+import excelScript from '../data/raw_scripts/Upload_Data_DB.py?raw';
+import sentimentScript from '../data/raw_scripts/sentiment_analysis.py?raw';
+import keywordScript from '../data/raw_scripts/textual_data_keyword_extractor.py?raw';
+import schemaScript from '../data/raw_scripts/sql_analyser_mssql_db.py?raw';
+
+const scriptMapping = {
+  'Upload_Data_DB.py': excelScript,
+  'sentiment_analysis.py': sentimentScript,
+  'textual_data_keyword_extractor.py': keywordScript,
+  'sql_analyser_mssql_db.py': schemaScript
+};
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [isTasting, setIsTasting] = useState(false);
   const [consoleLogs, setConsoleLogs] = useState([]);
+  const [showCode, setShowCode] = useState(false);
 
   useEffect(() => {
     const found = recipes.find(r => r.id === id);
@@ -40,10 +55,18 @@ const RecipeDetail = () => {
 
   if (!recipe) return <div className="text-center py-5"><h2 className="text-gold">Recipe Not Found</h2></div>;
 
+  const scriptContent = scriptMapping[recipe.file] || "# RAW ACCESS RESTRICTED: Script not found in local vault.";
+
   return (
     <div className="fade-in">
-      <nav aria-label="breadcrumb" className="mb-4">
+      <nav aria-label="breadcrumb" className="mb-4 d-flex justify-content-between align-items-center">
         <Link to="/" className="text-gold text-decoration-none small">← BACK TO MENU</Link>
+        <button 
+          onClick={() => setShowCode(!showCode)} 
+          className="btn btn-sm btn-bistro-outline d-flex align-items-center border-gold"
+        >
+          <Eye size={16} className="me-2" /> {showCode ? 'HIDE SOURCE' : 'INSPECT SOURCE'}
+        </button>
       </nav>
 
       <div className="row g-5">
@@ -128,6 +151,13 @@ const RecipeDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Full-Width Code Vault Section */}
+      {showCode && (
+        <div className="animate-fade-in-up">
+          <CodeVault code={scriptContent} fileName={recipe.file} />
+        </div>
+      )}
     </div>
   );
 };
