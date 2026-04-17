@@ -16,8 +16,43 @@
     
     <!-- Lab Custom Theme -->
     <link rel="stylesheet" href="{% static 'css/lab_theme.css' %}">
+
+    <style>
+        #security-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .modal-content-glass {
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body>
+<body class="hidden-overflow">
+    <!-- Security Disclaimer Modal -->
+    <div id="security-modal-overlay">
+        <div class="glass-panel modal-content-glass shadow-lg">
+            <h2 class="text-gold mb-4">🛡️ Security & Safety Protocol</h2>
+            <p class="mb-4 text-white">Welcome to the <strong>PySwissShef Laboratory</strong>. You are about to access automation scripts that can interact with file systems, networks, and data.</p>
+            <div class="text-start mb-4 p-3 bg-dark border border-secondary rounded">
+                <small class="text-gold fw-bold">DISCLAIMER:</small>
+                <p class="small text-muted mb-0">These scripts are provided for educational and demonstration purposes. Running automation tools locally or in a cloud environment involves risk. Always inspect the code before execution. PySwissShef is not responsible for any data loss or system impact.</p>
+            </div>
+            <button id="accept-disclaimer" class="btn btn-gourmet w-100 p-3">I UNDERSTAND & ACCEPT THE RISKS</button>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark navbar-bistro sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'scripts:home' %}">
@@ -54,5 +89,26 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('security-modal-overlay');
+            const acceptBtn = document.getElementById('accept-disclaimer');
+            
+            // Check if already accepted
+            if (localStorage.getItem('pyswissshef_disclaimer_accepted')) {
+                overlay.style.display = 'none';
+                document.body.classList.remove('hidden-overflow');
+            }
+
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('pyswissshef_disclaimer_accepted', 'true');
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.body.classList.remove('hidden-overflow');
+                }, 500);
+            });
+        });
+    </script>
 </body>
 </html>

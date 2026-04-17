@@ -88,7 +88,8 @@ def reset_database():
         
         print("Initializing fresh database...")
         os.chdir(DJANGO_DIR)
-        run_command([sys.executable, "manage.py", "migrate"])
+        from django.core.management import execute_from_command_line
+        execute_from_command_line([sys.executable, "manage.py", "migrate"])
         print("Re-initialized database.")
     else:
         print("Reset aborted.")
@@ -100,31 +101,33 @@ def run_web():
     # 1. Dependency Check
     try:
         import django
+        from django.core.management import execute_from_command_line
     except ImportError:
         print("[!] Django is not installed in the current environment.")
-        choice = input("[?] Would you like to attempt to install requirements now? (y/N): ")
-        if choice.lower() == 'y':
-            print("[+] Installing dependencies from requirements.txt...")
-            if not run_command([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"]):
-                print("[!!] Installation failed. Please install dependencies manually.")
-                return
-        else:
-            print("[!!] Cannot start portal without Django. Exiting.")
-            return
+        # Subprocess still used for pip, but pip might be allowed if it doesn't need signals
+        # However, in StackBlitz, user should run npm install / pip install from terminal
+        print("[!!] Cannot start portal without Django. Please install requirements manually.")
+        return
 
     # 2. Migration Check
     print("[+] Applying database migrations...")
     os.chdir(DJANGO_DIR)
-    if not run_command([sys.executable, "manage.py", "migrate"]):
-        print("[!!] Migrations failed.")
-        return
+    try:
+        execute_from_command_line([sys.executable, "manage.py", "migrate"])
+    except Exception as e:
+        print(f"[!!] Migrations failed: {e}")
+        # Note: We continue as DB might already be up
     
     # 3. Launch Server
+    # Note: execute_from_command_line is a blocking call. 
+    # In StackBlitz, the console might crash if we use subprocess, but this direct call is native.
     print("[+] Server is starting at http://127.0.0.1:8000")
     try:
-        subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8000"])
+        execute_from_command_line([sys.executable, "manage.py", "runserver", "0.0.0.0:8000", "--noreload"])
     except KeyboardInterrupt:
         print("\nWeb Portal stopped.")
+    except Exception as e:
+        print(f"\n[!!] Portal Error: {e}")
 
 def cleanup():
     """Clean caches and logs."""

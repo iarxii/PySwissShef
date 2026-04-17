@@ -39,11 +39,13 @@
                         <h3 class="h4 mb-2">{{ script.name }}</h3>
                         <p class="text-muted flex-grow-1 small mb-4">{{ script.description }}</p>
                         
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <form action="{% url 'scripts:run_script' script.id %}" method="post" class="w-100">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-gourmet btn-sm w-100">EXECUTE RECIPE</button>
-                            </form>
+                        <div class="mt-auto">
+                            <div class="d-grid gap-2 text-mono small">
+                                <a href="{% url 'scripts:script_detail' script.id %}" class="btn btn-gourmet btn-sm">VIEW RECIPE DETAILS</a>
+                                {% if script.repo_url %}
+                                <a href="{{ script.repo_url }}" target="_blank" class="btn btn-bistro-outline btn-sm">SOURCE_CODE</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>

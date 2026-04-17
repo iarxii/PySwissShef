@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row g-5">
+    <!-- Left Column: Gastro-Documentation -->
+    <div class="col-lg-8">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb text-mono small">
+                <li class="breadcrumb-item"><a href="{% url 'scripts:home' %}" class="text-gold">LAB</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'scripts:showcase' %}" class="text-muted">PANTRY</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">{{ script.name|upper }}</li>
+            </ol>
+        </nav>
+
+        <h1 class="display-3 mb-4">{{ script.name }}</h1>
+        
+        <div class="d-flex flex-wrap gap-2 mb-5">
+            <span class="badge rounded-pill bg-dark border border-gold text-gold p-2 px-3">
+                {% if script.environment_target == 'sb' %}🟢 STACKBLITZ READY (LIGHT)
+                {% elif script.environment_target == 'cs' %}🔵 CODESPACES (STANDARD)
+                {% elif script.environment_target == 'rp' %}🟣 REPLIT (HEAVY)
+                {% else %}🟠 LOCAL RECOMMENDED
+                {% endif %}
+            </span>
+            <span class="badge rounded-pill bg-dark border border-secondary p-2 px-3 text-white">
+                SECURITY: {{ script.get_security_level_display|upper }}
+            </span>
+        </div>
+
+        <div class="glass-panel p-5 mb-5 shadow-lg">
+            <h2 class="h4 text-gold mb-4 text-mono"># THE RECIPE</h2>
+            <div class="recipe-content lead">
+                {{ script.detailed_description|default:script.description|linebreaks }}
+            </div>
+            
+            {% if script.environment_target == 'lr' or script.environment_target == 'rp' %}
+            <div class="mt-5 p-4 bg-dark rounded border-start border-gold border-4">
+                <h3 class="h6 text-gold mb-2 text-mono">CHEF'S NOTE: BEYOND THE BROWSER</h3>
+                <p class="small text-muted mb-0">This recipe requires heavy ingredients (native drivers or high memory). Downloading and running locally is highly recommended for the best experience.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Security Disclaimer Block -->
+        <div class="glass-panel p-4 mb-5 border-danger bg-danger-subtle bg-opacity-10">
+            <h3 class="h5 text-danger mb-3">🛡️ Security Disclaimer</h3>
+            <p class="small text-muted mb-0">
+                {{ script.security_disclaimer|default:"This automation script interacts with external systems. PySwissShef provides the source for educational review. Run at your own risk. Inspect ingredients before heating." }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Right Column: Action Bar & Results -->
+    <div class="col-lg-4">
+        <div class="sticky-top" style="top: 100px;">
+            <div class="glass-panel p-4 mb-4">
+                <h3 class="h5 mb-4 text-mono">ACTIONS</h3>
+                
+                <div class="d-grid gap-3">
+                    {% if script.repo_url %}
+                    <a href="{{ script.repo_url }}" target="_blank" class="btn btn-gourmet w-100 p-3">
+                        VIEW ON GITHUB
+                    </a>
+                    {% endif %}
+                    
+                    {% if script.release_url %}
+                    <a href="{{ script.release_url }}" target="_blank" class="btn btn-outline-light w-100 p-3 text-mono">
+                        DOWNLOAD RELEASE
+                    </a>
+                    {% endif %}
+
+                    <hr class="border-secondary my-2">
+
+                    <form action="{% url 'scripts:run_script' script.id %}" method="post">
+                        {% csrf_token %}
+                        {% if script.has_sample_data %}
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input bg-gold border-gold" type="checkbox" name="use_sample" id="sampleSwitch" checked>
+                            <label class="form-check-label text-white small" for="sampleSwitch">USE CHEF'S INGREDIENTS (SAMPLE DATA)</label>
+                        </div>
+                        {% endif %}
+                        <button type="submit" class="btn btn-gold-solid w-100 p-3 fw-bold">LAUNCH IN LABORATORY</button>
+                    </form>
+                </div>
+            </div>
+
+            {% if output %}
+            <div class="animate-float">
+                <h3 class="h6 mb-3 text-gold text-mono"># RESULTS_LOG</h3>
+                <div class="console-output shadow-lg" style="font-size: 0.8rem;">
+                    <pre class="m-0">{{ output }}</pre>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gold-solid {
+        background: var(--gold);
+        color: var(--midnight);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    .btn-gold-solid:hover {
+        background: #fff;
+        box-shadow: 0 0 20px var(--gold-glow);
+        transform: translateY(-2px);
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: var(--gold-muted);
+    }
+</style>
+{% endblock %}

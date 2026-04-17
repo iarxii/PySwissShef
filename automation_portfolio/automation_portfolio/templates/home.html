@@ -36,10 +36,12 @@
                     <p class="text-muted small mb-4">{{ script.description|truncatewords:20 }}</p>
                     
                     <div class="mt-auto">
-                        <form action="{% url 'scripts:run_script' script.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-gourmet w-100">Prepare & Execute</button>
-                        </form>
+                        <div class="d-grid gap-2">
+                            {% if script.repo_url %}
+                            <a href="{{ script.repo_url }}" target="_blank" class="btn btn-gourmet btn-sm">VIEW ON GITHUB</a>
+                            {% endif %}
+                            <a href="{% url 'scripts:script_detail' script.id %}" class="btn btn-bistro-outline btn-sm">LEARN MORE...</a>
+                        </div>
                     </div>
                 </div>
             </div>
