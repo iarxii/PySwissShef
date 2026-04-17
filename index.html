@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PySwissShef Laboratory | Tasting Room</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Lab Theme -->
+    <link rel="stylesheet" href="automation_portfolio/scripts/static/css/lab_theme.css">
+
+    <style>
+        #security-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .modal-content-glass {
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="hidden-overflow">
+    <!-- Security Disclaimer Modal -->
+    <div id="security-modal-overlay">
+        <div class="glass-panel modal-content-glass shadow-lg">
+            <h2 class="text-gold mb-4">🛡️ Tasting Room Protocol</h2>
+            <p class="mb-4 text-white">Welcome to the <strong>Static Tasting Room</strong>. You are viewing the high-fidelity UI of the PySwissShef Laboratory.</p>
+            <div class="text-start mb-4 p-3 bg-dark border border-secondary rounded">
+                <small class="text-gold fw-bold">ENV NOTICE:</small>
+                <p class="small text-muted mb-0">This is a static preview. To execute automation recipes and experience full 'In-Process' script capture, please visit the <strong>High-Heat Kitchen (Replit)</strong> station.</p>
+            </div>
+            <button id="accept-disclaimer" class="btn btn-gourmet w-100 p-3">ENTER THE TASTING ROOM</button>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-bistro sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="automation_portfolio/scripts/static/images/pyswisschef_ai_logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top rounded-circle shadow-sm">
+                <span class="ms-3 text-gold">PySwissShef <span class="fw-light small">LAB</span></span>
+            </a>
+            <div class="ms-auto d-none d-lg-block">
+                <span class="badge rounded-pill bg-dark border border-gold text-gold p-2">STATIC TASTING ROOM</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <!-- Gourmet Hero Section -->
+        <div class="row align-items-center mb-5 animate-float">
+            <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                <div class="glass-panel p-3 d-inline-block shadow-lg">
+                    <img src="automation_portfolio/scripts/static/images/pyswisschef_ai_logo.png" alt="PySwissShef Logo" class="img-fluid rounded-circle" style="max-width: 240px; border: 4px solid var(--gold);">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <h1 class="display-3 mb-3">Welcome to the <span class="text-gold">Laboratory</span></h1>
+                <h4 class="fw-light mb-4">"Precisely code, high-heat automation, and gourmet diagnostics."</h4>
+                <div class="glass-panel p-4">
+                    <p class="lead">I'm <span class="text-gold">Thabang</span>, and this is PySwissShef – your digital test-kitchen for Python automation. This **Tasting Room** lets you explore the aesthetic of my portfolio while providing links to the full execution stations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Recipes -->
+        <div class="mb-5">
+            <h2 class="mb-4 d-flex align-items-center">
+                <span class="text-gold me-3">#</span> Featured Recipes
+            </h2>
+            
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- Recipe 1 -->
+                <div class="col">
+                    <div class="glass-card h-100 p-4">
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                            <span class="badge rounded-pill bg-dark border border-secondary text-gold">PREVIEW ONLY</span>
+                            <small class="text-muted text-mono">v1.2.0</small>
+                        </div>
+                        <h3 class="h4 mb-3">Sentiment Analyzer</h3>
+                        <p class="text-muted small mb-4">Gourmet NLP tool for deep-diving into text mood and lexicon diagnostics...</p>
+                        <div class="mt-auto">
+                            <div class="d-grid gap-2">
+                                <a href="docs/LAB_STATIONS.md" class="btn btn-gourmet btn-sm">GOTO HIGH-HEAT KITCHEN</a>
+                                <a href="https://github.com/iarxii/PySwissShef" target="_blank" class="btn btn-bistro-outline btn-sm">VIEW RECIPE SOURCE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recipe 2 -->
+                <div class="col">
+                    <div class="glass-card h-100 p-4">
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                            <span class="badge rounded-pill bg-dark border border-secondary text-gold">PREVIEW ONLY</span>
+                            <small class="text-muted text-mono">v1.0.5</small>
+                        </div>
+                        <h3 class="h4 mb-3">Auto-Commit Chef</h3>
+                        <p class="text-muted small mb-4">Managing git workflows with precisely timed pushes and automated logs...</p>
+                        <div class="mt-auto">
+                            <div class="d-grid gap-2">
+                                <a href="docs/LAB_STATIONS.md" class="btn btn-gourmet btn-sm">GOTO HIGH-HEAT KITCHEN</a>
+                                <a href="https://github.com/iarxii/PySwissShef" target="_blank" class="btn btn-bistro-outline btn-sm">VIEW RECIPE SOURCE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Station Guide -->
+                <div class="col">
+                    <div class="glass-card h-100 p-4 border-gold">
+                        <div class="mb-3 text-gold">
+                            <h3 class="h4 mb-3">Need to Execute?</h3>
+                        </div>
+                        <p class="text-white small mb-4">To run these scripts and see real-time output, please visit our high-performance stations.</p>
+                        <ul class="text-muted small list-unstyled mb-4">
+                            <li>🔥 <strong>Replit</strong>: Full Subprocess support</li>
+                            <li>🛠️ <strong>Codespaces</strong>: Pro Dev Environment</li>
+                        </ul>
+                        <div class="mt-auto">
+                            <a href="docs/LAB_STATIONS.md" class="btn btn-gourmet w-100">STATION GUIDE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container py-4 mt-5 text-center text-muted border-top border-secondary">
+        <p class="small text-mono text-gold">&copy; 2026 PySwissShef Laboratory | Precise Python & High-Heat Automation</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('security-modal-overlay');
+            const acceptBtn = document.getElementById('accept-disclaimer');
+            
+            if (localStorage.getItem('pyswissshef_tasting_room_accepted')) {
+                overlay.style.display = 'none';
+                document.body.classList.remove('hidden-overflow');
+            }
+
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('pyswissshef_tasting_room_accepted', 'true');
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.body.classList.remove('hidden-overflow');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

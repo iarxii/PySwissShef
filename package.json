@@ -4,7 +4,8 @@
   "description": "PySwissShef Laboratory Portal",
   "main": "main.py",
   "scripts": {
-    "start": "python main.py --web",
+    "start": "npx http-server ./ -p 8000",
+    "portal": "python main.py --web",
     "setup": "bash setup_stackblitz.sh"
   },
   "keywords": [

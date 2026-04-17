@@ -1,26 +1,28 @@
 #!/bin/bash
 
 echo "------------------------------------------------"
-echo "  PySwissShef Laboratory: StackBlitz Bootstrap  "
+echo "  PySwissShef Laboratory: Static Tasting Room   "
 echo "------------------------------------------------"
 
 # 1. Environment Check
 if command -v pip > /dev/null 2>&1
 then
-    echo "[+] pip found. Initializing dependencies..."
+    echo "[+] pip found. Initializing full Laboratory dependencies..."
     pip install -r requirements.txt
+    echo "[+] Dependencies loaded. Run 'npm run portal' to start the interactive Lab."
 else
-    echo "[!] pip not found (Common in StackBlitz WASM containers)."
+    echo "[!] pip not found (StackBlitz WASM Limit)."
     echo "------------------------------------------------"
-    echo "NOTICE: StackBlitz Preview Mode Only"
+    echo "NOTICE: One-Click Tasting Room Initialized"
     echo "------------------------------------------------"
-    echo "This environment is currently restricted to 'In-Process' browsing."
-    echo "You can still browse the Lab UI and check Recipe documentation."
+    echo "This environment is currently optimized for UI Browsing."
+    echo "The gourmet layout should appear in your preview window automatically."
     echo ""
-    echo "For full automation execution with high-heat dependencies:"
+    echo "To EAT (Execute) automation recipes with high-heat support:"
     echo ">>> USE REPLIT OR CODESPACES <<<"
+    print " (See docs/LAB_STATIONS.md for links) "
     echo "------------------------------------------------"
 fi
 
-echo "[+] Starting Lab Portal..."
-python main.py --web
+echo "[+] Serving Static Tasting Room..."
+npx http-server ./ -p 8000
