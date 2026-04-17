@@ -44,7 +44,7 @@ const GourmetShell = ({ children }) => {
         <div className="container">
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img 
-              src="automation_portfolio/scripts/static/images/pyswisschef_ai_logo.png" 
+              src="/images/pyswisschef_ai_logo.png" 
               alt="Logo" 
               width="40" 
               height="40" 

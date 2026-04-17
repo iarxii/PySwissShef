@@ -29,15 +29,16 @@ body {
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../images/pyswisschef_ai_logo.png");
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfectly centered */
+    width: 400px; /* Fixed, subtle dimension */
+    height: 400px;
+    background-image: url("/images/pyswisschef_ai_logo.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 35%; /* Slightly smaller/sharper */
-    opacity: 0.18; /* More pronounced (up from 0.08) */
+    background-size: contain;
+    opacity: 0.12; /* Slightly more subtle backdrop */
     z-index: -2;
 }
 
@@ -63,17 +64,20 @@ body::after {
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
     border-color: var(--gold);
-    box-shadow: 0 0 20px var(--gold-muted);
-    transform: translateY(-5px);
+    box-shadow: 0 0 30px var(--gold-glow);
+    transform: translateY(-8px);
+    background: rgba(255, 212, 59, 0.05);
 }
 
 /* Typography */
@@ -166,4 +170,30 @@ h1, h2, h3, .navbar-brand {
 
 .animate-float {
     animation: float 6s ease-in-out infinite;
+}
+
+/* Modal and Overlay Calibrations */
+#security-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 16, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content-glass {
+    max-width: 500px;
+    width: 90%;
+    padding: 2.5rem;
+    text-align: center;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 50px rgba(255, 212, 59, 0.2);
+}
+
+.hidden-overflow {
+    overflow: hidden;
 }
