@@ -1,0 +1,169 @@
+/* PySwissShef: The Cyber-Bistro Design System */
+
+:root {
+    --gold: #FFD43B;
+    --gold-glow: rgba(255, 212, 59, 0.4);
+    --gold-muted: rgba(255, 212, 59, 0.15);
+    --midnight: #121420; /* Slightly lighter navy for better depth */
+    --midnight-light: #222533;
+    --slate: #1A1A1A;
+    --text-main: #FFFFFF;
+    --text-muted: #e9ecef; /* Maximum visibility for descriptions */
+    --glass-bg: rgba(25, 27, 38, 0.7); /* Richer glass feel */
+    --glass-border: rgba(255, 212, 59, 0.35); /* Stronger gold definition */
+    --font-heading: 'Outfit', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base Styles */
+body {
+    background-color: var(--midnight);
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/pyswisschef_ai_logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 35%; /* Slightly smaller/sharper */
+    opacity: 0.18; /* More pronounced (up from 0.08) */
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(18, 20, 32, 0.75) 0%, rgba(34, 37, 51, 0.65) 100%); /* Lightened (down from 0.9/0.8) */
+    z-index: -1;
+}
+
+/* Glassmorphism Containers */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px var(--gold-muted);
+    transform: translateY(-5px);
+}
+
+/* Typography */
+h1, h2, h3, .navbar-brand {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+}
+
+.text-gold { color: var(--gold); }
+.text-mono { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* Custom Navbar */
+.navbar-bistro {
+    background: rgba(10, 11, 16, 0.8) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 0;
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--gold) !important;
+}
+
+/* Buttons (Recipe Style) */
+.btn-gourmet {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+.btn-gourmet:hover {
+    background: var(--gold);
+    color: var(--midnight);
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.btn-bistro-outline {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Stronger inactive border */
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+.glass-card p {
+    color: var(--text-muted) !important; /* Explicitly force high contrast */
+}
+
+.btn-bistro-outline:hover, .btn-bistro-outline.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-muted);
+}
+
+/* Console/Output Area */
+.console-output {
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    color: #00ff00;
+    font-family: var(--font-mono);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}

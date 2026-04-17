@@ -2,46 +2,67 @@
 {% load static %}
 
 {% block content %}
-    <div class="container py-5">
-        <h1 class="text-center mb-4">Welcome to PySwissChef</h1>
-
-        <div class="row align-items-center bg-light p-4 rounded-3 mb-5">
-            <div class="col-md-3 text-center mb-3 mb-md-0">
-                <img src="{% static 'images/pyswisschef_ai_logo.png' %}" alt="PySwissChef Logo" class="img-fluid rounded-circle shadow-sm" style="max-width: 150px;">
-            </div>
-            <div class="col-md-9">
-                <h2>Hey there! Welcome to my digital workshop!</h2>
-                <p class="lead text-muted">I'm Thabang, and this is PySwissChef – my personal playground for all things Python and automation. Think of it as a Swiss Army knife, but for code. Each tool you see below is a script I've cooked up to solve a problem, automate a task, or just satisfy my curiosity. Feel free to take them for a spin!</p>
+    <!-- Gourmet Hero Section -->
+    <div class="row align-items-center mb-5 animate-float">
+        <div class="col-lg-4 text-center mb-4 mb-lg-0">
+            <div class="glass-panel p-3 d-inline-block shadow-lg">
+                <img src="{% static 'images/pyswisschef_ai_logo.png' %}" alt="PySwissShef Logo" class="img-fluid rounded-circle" style="max-width: 240px; border: 4px solid var(--gold);">
             </div>
         </div>
+        <div class="col-lg-8">
+            <h1 class="display-3 mb-3">Welcome to the <span class="text-gold">Laboratory</span></h1>
+            <h4 class="fw-light mb-4">"Precisely code, high-heat automation, and gourmet diagnostics."</h4>
+            <div class="glass-panel p-4">
+                <p class="lead">I'm <span class="text-gold">Thabang</span>, and this is PySwissShef – your digital test-kitchen for Python automation. Every script here is a curated "Recipe" designed to solve complex data challenges or streamline workflows with Swiss accuracy.</p>
+            </div>
+        </div>
+    </div>
 
-        <h3 class="text-center mb-4">Available Scripts</h3>
-
+    <!-- Chef's Specials (Quick Access) -->
+    <div class="mb-5">
+        <h2 class="mb-4 d-flex align-items-center">
+            <span class="text-gold me-3">#</span> Chef's Specials
+        </h2>
+        
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for script in scripts %}
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ script.name }}</h5>
-                        <p class="card-text">{{ script.description }}</p>
+                <div class="glass-card h-100 p-4">
+                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                        <span class="badge rounded-pill bg-dark border border-secondary text-gold">READY</span>
+                        <small class="text-muted text-mono">v1.2.0</small>
+                    </div>
+                    <h3 class="h4 mb-3">{{ script.name }}</h3>
+                    <p class="text-muted small mb-4">{{ script.description|truncatewords:20 }}</p>
+                    
+                    <div class="mt-auto">
                         <form action="{% url 'scripts:run_script' script.id %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Run</button>
+                            <button type="submit" class="btn btn-gourmet w-100">Prepare & Execute</button>
                         </form>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12">
-                <p class="text-center text-muted">No scripts have been added yet. Please check back later or add scripts via the admin panel.</p>
+            <div class="col-12 text-center py-5 glass-panel">
+                <p class="text-muted">The pantry is currently empty. Add some gourmet scripts in the admin panel!</p>
             </div>
             {% endfor %}
         </div>
-        {% if output %}
-        <div class="mt-5">
-            <h2>Output:</h2>
-            <pre>{{ output }}</pre>
-        </div>
-        {% endif %}
     </div>
+
+    <!-- Execution Output Area -->
+    {% if output %}
+    <div class="mt-5 animate-float" id="output-section">
+        <h2 class="mb-4 d-flex align-items-center">
+            <span class="text-gold me-3">#</span> Laboratory Results
+        </h2>
+        <div class="console-output shadow-lg">
+            <pre class="m-0">{{ output }}</pre>
+        </div>
+        <div class="text-end mt-3">
+            <button onclick="document.getElementById('output-section').style.display='none'" class="btn btn-sm btn-outline-secondary">Clear Counter</button>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

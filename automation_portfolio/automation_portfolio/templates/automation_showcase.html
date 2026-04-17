@@ -1,17 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container py-5">
-    <h1 class="mb-4">Automation Showcase</h1>
-    <div class="list-group">
+<div class="py-4">
+    <div class="d-flex justify-content-between align-items-end mb-5">
+        <div>
+            <h1 class="display-4">The <span class="text-gold">Pantry</span></h1>
+            <p class="text-muted lead mb-0">Browse our inventory of high-heat automation recipes.</p>
+        </div>
+        <div class="text-end">
+            <span class="badge rounded-pill bg-dark border border-secondary p-2 px-3 text-gold text-mono">TOTAL: {{ scripts|length }} ITEMS</span>
+        </div>
+    </div>
+
+    <!-- Category Filter (Menu Style) -->
+    <div class="mb-5">
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{% url 'scripts:showcase' %}" class="btn btn-sm {% if not selected_category %}btn-gourmet{% else %}btn-bistro-outline{% endif %}">ALL INGREDIENTS</a>
+            <a href="{% url 'scripts:showcase' %}?category=Data" class="btn btn-sm {% if selected_category == 'Data' %}btn-gourmet{% else %}btn-bistro-outline{% endif %}">DATA PROCESSING</a>
+            <a href="{% url 'scripts:showcase' %}?category=NLP" class="btn btn-sm {% if selected_category == 'NLP' %}btn-gourmet{% else %}btn-bistro-outline{% endif %}">NATURAL LANGUAGE</a>
+            <a href="{% url 'scripts:showcase' %}?category=Web" class="btn btn-sm {% if selected_category == 'Web' %}btn-gourmet{% else %}btn-bistro-outline{% endif %}">WEB AUTOMATION</a>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-lg-2 g-4">
         {% for script in scripts %}
-        <a href="{% url 'scripts:run_script' script.id %}" class="list-group-item list-group-item-action">
-            <h5 class="mb-1">{{ script.name }}</h5>
-            <p class="mb-1">{{ script.description }}</p>
-        </a>
+        <div class="col">
+            <div class="glass-panel p-0 overflow-hidden h-100 glass-card">
+                <div class="row g-0 h-100">
+                    <div class="col-md-4 bg-dark d-flex align-items-center justify-content-center border-end border-secondary p-4">
+                        <div class="text-center">
+                            <span class="h1 text-gold mb-0"><i class="text-mono">[{% firstof script.category.0 'P' %}]</i></span>
+                            <br>
+                            <small class="text-muted text-mono text-uppercase" style="font-size: 0.65rem;">{{ script.category|default:"PORTFOLIO" }}</small>
+                        </div>
+                    </div>
+                    <div class="col-md-8 p-4 d-flex flex-column">
+                        <h3 class="h4 mb-2">{{ script.name }}</h3>
+                        <p class="text-muted flex-grow-1 small mb-4">{{ script.description }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <form action="{% url 'scripts:run_script' script.id %}" method="post" class="w-100">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-gourmet btn-sm w-100">EXECUTE RECIPE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% empty %}
-        <div class="list-group-item">
-            <p class="mb-1 text-muted">No scripts found for this category.</p>
+        <div class="col-12 py-5 text-center glass-panel">
+            <h4 class="text-muted">No automation recipes found for "{{ selected_category }}".</h4>
+            <p class="small text-muted">Try selecting a different pantry section.</p>
         </div>
         {% endfor %}
     </div>

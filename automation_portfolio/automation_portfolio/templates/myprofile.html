@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>My Profile</h1>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Thabang Mposula</h5>
-        <p class="card-text">Email: thabang.mposula@outlook.com</p>
-        <p class="card-text">Role: Developer & Automation Specialist</p>
+<div class="row justify-content-center py-5">
+    <div class="col-lg-6">
+        <div class="glass-panel p-5 text-center animate-float">
+            <div class="mb-4">
+                <img src="{% static 'images/pyswisschef_ai_logo.png' %}" alt="Chef Profile" class="img-fluid rounded-circle p-1 bg-gold" style="max-width: 150px;">
+            </div>
+            <h1 class="text-gold mb-2">Thabang</h1>
+            <p class="text-muted small text-mono mb-4 text-uppercase">HEAD CHEF OF AUTOMATION</p>
+            <div class="border-top border-secondary pt-4 text-start">
+                <p class="mb-3">Welcome to my profile. I'm a Python developer passionate about creating precise, high-performance automation scripts.</p>
+                <div class="d-grid gap-2">
+                    <a href="https://github.com/iarxii" class="btn btn-gourmet">Visit Github Kitchen</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

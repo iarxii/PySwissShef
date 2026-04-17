@@ -1,26 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Contact</h1>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Get in Touch</h5>
-        <p class="card-text">For inquiries, please email: thabang.mposula@outlook.com</p>
-        <form>
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-        </form>
+<div class="row justify-content-center py-5">
+    <div class="col-lg-8">
+        <div class="glass-panel p-5">
+            <h1 class="display-4 text-gold mb-4 text-center">Get in <span class="text-white">Touch</span></h1>
+            <p class="text-center text-muted mb-5">Have a complex automation project? Let's discuss the ingredients.</p>
+            
+            <form class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label small text-gold text-mono">NAME</label>
+                    <input type="text" class="form-control bg-dark border-secondary text-white p-3" placeholder="Enter name...">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small text-gold text-mono">EMAIL</label>
+                    <input type="email" class="form-control bg-dark border-secondary text-white p-3" placeholder="Enter email...">
+                </div>
+                <div class="col-12">
+                    <label class="form-label small text-gold text-mono">MESSAGE</label>
+                    <textarea class="form-control bg-dark border-secondary text-white p-3" rows="5" placeholder="Tell us about the project..."></textarea>
+                </div>
+                <div class="col-12 mt-5">
+                    <button type="button" class="btn btn-gourmet w-100 p-3">Submit Recipe Request</button>
+                    <p class="small text-center text-muted mt-3">Ready to server high-performance code.</p>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
