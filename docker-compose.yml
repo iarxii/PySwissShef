@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  pyswissshef:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DJANGO_SETTINGS_MODULE=automation_portfolio.settings
+    restart: always

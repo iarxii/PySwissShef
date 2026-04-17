@@ -1,0 +1,24 @@
+# PySwissShef Requirements
+# Core Web Framework
+django==5.1.0
+
+# Data Processing
+pandas
+openpyxl
+
+# Database Automation
+sqlalchemy
+
+# Natural Language Processing (NLP)
+nltk
+langdetect
+googletrans==4.0.0-rc1
+pyspellchecker
+
+# Utility & Reporting
+fpdf
+tabulate
+
+# Optional / Extended (Native dependencies may vary)
+# pyodbc  # Requires unixodbc-dev
+# graphviz # Requires graphviz system binary

@@ -1,0 +1,8 @@
+{
+  "startCommand": "python main.py",
+  "installDependencies": true,
+  "env": {
+    "PYTHONUNBUFFERED": "1",
+    "DJANGO_SETTINGS_MODULE": "automation_portfolio.settings"
+  }
+}
