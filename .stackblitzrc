@@ -1,8 +1,7 @@
 {
-  "startCommand": "python main.py",
   "installDependencies": true,
+  "startCommand": "npm start",
   "env": {
-    "PYTHONUNBUFFERED": "1",
-    "DJANGO_SETTINGS_MODULE": "automation_portfolio.settings"
+    "NODE_VERSION": "18"
   }
 }
