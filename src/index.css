@@ -161,6 +161,58 @@ h1, h2, h3, .navbar-brand {
     overflow-y: auto;
 }
 
+/* Syntax Highlighting Calibration */
+.code-viewer-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-muted) transparent;
+}
+
+.code-viewer-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.code-viewer-container::-webkit-scrollbar-thumb {
+    background: var(--gold-muted);
+    border-radius: 10px;
+}
+
+/* Prism Overrides for Gourmet Aesthetics */
+code[class*="language-"], 
+pre[class*="language-"] {
+    text-shadow: none !important;
+}
+
+.token.keyword,
+.token.function,
+.token.class-name,
+.token.namespace {
+    color: var(--gold) !important;
+    font-weight: 500;
+}
+
+.token.string,
+.token.attr-value {
+    color: #a5d6ff !important; /* Muted Blue/Amber */
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6a737d !important;
+    font-style: italic;
+}
+
+.token.operator,
+.token.punctuation {
+    color: #adb5bd !important;
+}
+
+.token.number,
+.token.boolean {
+    color: #ff7b72 !important; /* Soft energetic red */
+}
+
 /* Animations */
 @keyframes float {
     0% { transform: translateY(0px); }
