@@ -128,6 +128,26 @@ h1, h2, h3, .navbar-brand {
     box-shadow: 0 0 15px var(--gold-glow);
 }
 
+.btn-elevation {
+    background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    text-decoration: none;
+}
+
+.btn-elevation:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
+    color: white;
+}
+
 .btn-bistro-outline {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-main);

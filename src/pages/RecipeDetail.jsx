@@ -17,12 +17,20 @@ const scriptMapping = {
   'sql_analyser_mssql_db.py': schemaScript
 };
 
+const REPLIT_LAB_URL = "https://py-portfolio-lab--thabangmposula.replit.app";
+
 const RecipeDetail = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [isTasting, setIsTasting] = useState(false);
   const [consoleLogs, setConsoleLogs] = useState([]);
   const [showCode, setShowCode] = useState(false);
+
+  // Environment Detection
+  const isStackBlitz = typeof window !== 'undefined' && 
+    (window.location.hostname.includes('stackblitz') || 
+     window.location.hostname.includes('webcontainer') || 
+     window.location.hostname.includes('localhost')); // For testing/dev
 
   useEffect(() => {
     const found = recipes.find(r => r.id === id);
@@ -38,12 +46,14 @@ const RecipeDetail = () => {
     const simulatedLogs = [
       `[INFO] Target: ${recipe.file}`,
       "[INFO] Checking local environment constraints...",
-      "[WARN] Restricted WASM environment detected (StackBlitz).",
+      isStackBlitz ? "[WARN] Restricted WASM environment detected (StackBlitz)." : "[INFO] Native High-Heat environment detected.",
       "[INFO] Executing gourmet diagnostic simulation...",
       ">>> PROCESSING LAYER 1: DATA INGESTION",
       ">>> PROCESSING LAYER 2: LOGIC RECONCILIATION",
       "[SUCCESS] Tasting complete. Diagnostic metrics captured.",
-      "[NOTICE] To run this recipe at scale with actual file access, please switch to a High-Heat station."
+      recipe.security.includes('High') && isStackBlitz 
+        ? "[STRICTURE] High-Access requirements detected. Please elevate to the High-Heat Kitchen."
+        : "[SUCCESS] Safe execution confirmed."
     ];
 
     simulatedLogs.forEach((log, index) => {
@@ -56,6 +66,8 @@ const RecipeDetail = () => {
   if (!recipe) return <div className="text-center py-5"><h2 className="text-gold">Recipe Not Found</h2></div>;
 
   const scriptContent = scriptMapping[recipe.file] || "# RAW ACCESS RESTRICTED: Script not found in local vault.";
+
+  const isElevationRequired = recipe.security.includes('High') && isStackBlitz;
 
   return (
     <div className="fade-in">
@@ -131,7 +143,14 @@ const RecipeDetail = () => {
             {!isTasting ? (
               <div className="text-center py-5">
                 <p className="text-white-50 mb-4">Ready to taste the diagnostic output of this recipe?</p>
-                <button onClick={startTasting} className="btn btn-gourmet">PREPARE & EXECUTE</button>
+                <div className="d-flex flex-column gap-3 align-items-center">
+                  <button onClick={startTasting} className="btn btn-gourmet w-100">PREPARE & EXECUTE</button>
+                  {isElevationRequired && (
+                    <a href={REPLIT_LAB_URL} target="_blank" className="btn btn-elevation w-100 d-flex align-items-center justify-content-center">
+                      <Rocket size={18} className="me-2" /> ELEVATE TO HIGH-HEAT
+                    </a>
+                  )}
+                </div>
               </div>
             ) : (
               <div className="console-output shadow-lg mb-0" style={{ minHeight: '340px' }}>
@@ -143,10 +162,17 @@ const RecipeDetail = () => {
               </div>
             )}
 
-            <div className="mt-4 p-3 border border-warning rounded bg-warning bg-opacity-10">
-              <p className="small text-warning mb-0">
-                <strong>STRICTURE:</strong> Execution in this tasting room is simulated. Use Replit for native high-heat performance.
+            <div className={`mt-4 p-3 border rounded bg-opacity-10 ${isElevationRequired ? 'border-danger bg-danger' : 'border-warning bg-warning'}`}>
+              <p className={`small mb-0 ${isElevationRequired ? 'text-danger fw-bold' : 'text-warning'}`}>
+                <strong>STRICTURE:</strong> {isElevationRequired 
+                  ? 'This tool requires High-Access. Execution here is visual-only. Please use the Replit kitchen.'
+                  : 'Execution in this tasting room is simulated. Use Replit for native high-heat performance.'}
               </p>
+              {isElevationRequired && isTasting && (
+                <a href={REPLIT_LAB_URL} target="_blank" className="btn btn-elevation btn-sm mt-3 w-100 d-flex align-items-center justify-content-center">
+                   ELEVATE NOW <Rocket size={14} className="ms-2" />
+                </a>
+              )}
             </div>
           </div>
         </div>
