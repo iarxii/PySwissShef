@@ -4,13 +4,13 @@
     --gold: #FFD43B;
     --gold-glow: rgba(255, 212, 59, 0.4);
     --gold-muted: rgba(255, 212, 59, 0.15);
-    --midnight: #121420; /* Slightly lighter navy for better depth */
-    --midnight-light: #222533;
+    --midnight: #090B10; /* Darker Replit background */
+    --midnight-light: #12141C;
     --slate: #1A1A1A;
     --text-main: #FFFFFF;
-    --text-muted: #e9ecef; /* Maximum visibility for descriptions */
-    --glass-bg: rgba(25, 27, 38, 0.7); /* Richer glass feel */
-    --glass-border: rgba(255, 212, 59, 0.35); /* Stronger gold definition */
+    --text-muted: #94A3B8; /* Slate-400 for better secondary text */
+    --glass-bg: rgba(15, 17, 26, 0.8);
+    --glass-border: rgba(255, 212, 59, 0.2);
     --font-heading: 'Outfit', -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
@@ -33,11 +33,11 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../images/pyswisschef_ai_logo.png");
+    background-image: url("../images/ggi_pyswissshef.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 35%; /* Slightly smaller/sharper */
-    opacity: 0.18; /* More pronounced (up from 0.08) */
+    background-size: cover;
+    opacity: 0.15;
     z-index: -2;
 }
 
@@ -48,7 +48,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(18, 20, 32, 0.75) 0%, rgba(34, 37, 51, 0.65) 100%); /* Lightened (down from 0.9/0.8) */
+    background: radial-gradient(circle at center, transparent 0%, var(--midnight) 90%);
     z-index: -1;
 }
 
@@ -155,6 +155,98 @@ h1, h2, h3, .navbar-brand {
     font-family: var(--font-mono);
     max-height: 400px;
     overflow-y: auto;
+}
+
+/* Logo & Branding */
+.logo-wrapper {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.logo-wrapper img {
+    max-height: 100%;
+    width: auto;
+}
+
+.logo-wrapper.lg {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.brand-label {
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.brand-tagline {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #64748B;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+/* Hero Badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 212, 59, 0.05);
+    border: 1px solid var(--gold-glow);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 2rem;
+}
+
+/* Big Hero Typography */
+.display-hero {
+    font-weight: 800;
+    font-size: 4rem;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .display-hero {
+        font-size: 2.5rem;
+    }
+}
+
+/* Statistics Row */
+.stats-row {
+    margin: 3rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.stat-value {
+    font-weight: 800;
+    font-size: 2.5rem;
+    display: block;
+    line-height: 1;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 /* Animations */
